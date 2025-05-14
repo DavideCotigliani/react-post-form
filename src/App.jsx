@@ -29,30 +29,34 @@ function App() {
   return (
     <>
       <div className="container mt-5">
-        <form onSubmit={handleSubmit}>
-          <div className="row">
-            <div className="col 6 my-3">
-              <input type="text" name='author' value={formData.author} onChange={handleFormData} placeholder='Nome autore' />
+        <div className="p-4 rounded" style={{ backgroundColor: '#e0f7ff' }}>
+          <h3>Crea un post</h3>
+          <form onSubmit={handleSubmit}>
+            <div className="row mb-3">
+              <div className="col 6 my-3">
+                <input type="text" className="form-control" name='author' value={formData.author} onChange={handleFormData} placeholder='Nome autore' />
+              </div>
+              <div className="col 6 my-3">
+                <input type="text" className="form-control" name='title' value={formData.title} onChange={handleFormData} placeholder='Titolo del post' />
+              </div>
             </div>
-            <div className="col 6 my-3">
-              <input type="text" name='title' value={formData.title} onChange={handleFormData} placeholder='Titolo del post' />
+            <div className="row">
+              <div className="col 6">
+                <textarea name="body" className="form-control" value={formData.body} onChange={handleFormData} placeholder='Inserisci il testo'></textarea>
+              </div>
+              <div className="col 6 d-flex align-items-center gap-2 mt-2">
+                <input type="checkbox" className="form-check" checked={formData.public === true} name="public" onChange={() => setFormData({ ...formData, public: true })} /> <label className="form-check-label">Post pubblico</label>
+                <input type="checkbox" className='form-check' checked={formData.public === false} name="public" onChange={() => setFormData({ ...formData, public: false })} /> <label className="form-check-label">Bozza</label>
+              </div>
             </div>
-          </div>
-          <div className="row">
-            <div className="col 6">
-              <textarea name="body" value={formData.body} onChange={handleFormData} placeholder='Inserisci il testo'></textarea>
+            <div className="row">
+              <div className="col 12">
+                <button>Invia</button>
+              </div>
             </div>
-            <div className="col 6">
-              <input type="checkbox" checked={formData.public === true} name="public" onChange={() => setFormData({ ...formData, public: true })} /> Post pubblico
-              <input type="checkbox" checked={formData.public === false} name="public" onChange={() => setFormData({ ...formData, public: false })} /> Bozza
-            </div>
-          </div>
-          <div className="row">
-            <div className="col 12">
-              <button>Invia</button>
-            </div>
-          </div>
-        </form>
+          </form>
+
+        </div>
       </div>
     </>
   )
